@@ -6,3 +6,5 @@ Task [frontend-test.pdf](https://github.com/vinilzen/iswa/blob/master/frontend-t
 
 Product list [data/products.json](https://github.com/vinilzen/iswa/blob/master/data/products.json)
 
+Demo [http://test.to4ek.net/iswa/](http://test.to4ek.net/iswa/)
+

@@ -1,0 +1,47 @@
+<form class="form-signin" name="loginForm" 
+    ng-controller="LoginController as loginCtrl"
+    ng-submit="loginForm.$valid && loginCtrl.login()" novalidate >
+  <!-- <p ng-show="loginForm.$invalid" >Invalid form</p> -->
+
+  <div class="text-danger" role="alert">
+    {{loginCtrl.message}}
+  </div>
+  <div class="text-danger" ng-messages="loginForm.email.$error" role="alert">
+    <div ng-message="required">Email field is required</div>
+    <div ng-message="email">Your email address is invalid</div>
+    <div ng-message-exp="['minlength', 'maxlength']">
+      Your email must be between 5 and 100 characters long
+    </div>
+  </div>
+  <div class="text-danger" ng-messages="loginForm.password.$error" role="alert">
+    <div ng-message="required">Password field is required</div>
+    <div ng-message-exp="['minlength', 'maxlength']">
+      Your password must be between 5 and 20 characters long
+    </div>
+  </div>
+  <h2 class="form-signin-heading">Please Login</h2>
+
+  <label for="inputEmail" class="sr-only">Email address</label>
+  <input type="email"
+    name="email" 
+    id="inputEmail" 
+    class="form-control" 
+    placeholder="Email address" 
+    ng-model="loginCtrl.email"
+    ng-minlength="5"
+    ng-maxlength="20" required autofocus>
+
+  <label for="inputPassword" class="sr-only">Password</label>
+  <input type="password"
+    name="password"
+    id="inputPassword" 
+    class="form-control" 
+    placeholder="Password" 
+    ng-model="loginCtrl.password"
+    ng-minlength="5"
+    ng-maxlength="20" required >
+
+  <button class="btn btn-lg btn-primary btn-block" type="submit" ng-disabled="loginForm.$invalid">
+  	Sign in
+  </button>
+</form>

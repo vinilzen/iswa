@@ -1,0 +1,18 @@
+<div class="popover-content">
+  <ul class="media-list">
+    <li ng-repeat="product in cartCtrl.products" class="media">
+      <div class="media-left">
+        <a href="#">
+          <img ng-src="{{product.Image}}" width="50" height="25" alt="">
+        </a>
+      </div>
+      <div class="media-body">
+        <h4 class="media-heading">
+          #{{product.id}} {{product.Name}}
+          <small>{{product.Price | currency:"$":0}}</small>
+        </h4>
+        <p>Count: {{product.count}}</p>
+      </div>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,117 @@
+<div ng-controller="StoreController as storeCtrl">
+	<h2>Store</h2>
+	<p class="alert alert-success">
+		{{storeCtrl.message}}
+	</p>
+
+	<form name="filterForm" class="form-inline" role="form">
+		<!-- Date range example -->
+		<div class="form-group">
+			<div class="col-xs-12 col-md-6 col-lg-4">
+				<label class="control-label">Issue date range</label>
+				<div class="row">
+					<div class="form-group col-xs-6">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+							<input type="text" class="form-control" 
+								ng-model="storeCtrl.query.Issue_date.min" 
+								data-max-date="{{storeCtrl.query.Issue_date.max}}" 
+								data-autoclose="true"
+								data-date-format="MMMM d, yyyy"data-date-type="number" 
+								data-container="body"
+								placeholder="From" bs-datepicker>
+						</div>
+					</div>
+					<div class="form-group col-xs-6">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="button">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+							<input type="text" class="form-control" 
+								ng-model="storeCtrl.query.Issue_date.max" 
+								data-min-date="{{storeCtrl.query.Issue_date.min}}" 
+								data-autoclose="true"
+								data-date-format="MMMM d, yyyy"data-date-type="number" 
+								data-container="body"
+								placeholder="Until" bs-datepicker>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-6 col-lg-4">
+				<label class="control-label">Price</label>
+				<div class="row">
+					<div class="form-group col-xs-6">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-info" type="button">from</button>
+							</span>
+							<input ng-model="storeCtrl.query.Price.min" type="text" class="form-control" placeholder="from...">
+						</div><!-- /input-group -->
+					</div><!-- /.col-xs-6 -->
+					<div class="form-group col-xs-6">
+						<div class="input-group">
+							<span class="input-group-btn">
+								<button class="btn btn-info" type="button">to</button>
+							</span>
+							<input ng-model="storeCtrl.query.Price.max" type="text" class="form-control" placeholder="to">
+						</div><!-- /input-group -->
+					</div><!-- /.col-xs-6 -->
+				</div>
+			</div>
+			<div class="col-xs-12 col-md-6 col-lg-4">
+				<label class="control-label">Color</label>
+				<div class="row">
+					<div class="form-group col-xs-6">
+						<select class="form-control" ng-model="storeCtrl.query.Color">
+							<option value="">any</option>
+							<option value="Red">Red</option>
+							<option value="Black">Black</option>
+							<option value="Blue">Blue</option>
+							<option value="White">White</option>
+							<option value="Yellow">Yellow</option>
+							<option value="Green">Green</option>
+						</select>
+					</div>
+					<div class="form-group col-xs-6">
+						<label class="checkbox-inline">
+							<input ng-model="storeCtrl.query.inStock" type="checkbox" value="1"> In stock only
+						</label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+	<div class="clearfix"></div>
+
+	<ul class="media-list">
+		<li ng-repeat="product in storeCtrl.products | productFilter:storeCtrl.query" class="media">
+			<div class="media-left">
+				<a href="#">
+					<img ng-src="{{product.Image}}" alt="">
+				</a>
+			</div>
+			<div class="media-body">
+				<h4 class="media-heading">
+					#{{product.id}} {{product.Name}}
+					<small>{{product.Price | currency:"$":0}}</small>
+				</h4>
+				<input type="submit" value="Order" ng-click="storeCtrl.addToCart(product)" class="btn pull-right">
+				<p>
+					Raiting: {{product.Raiting}} <raitng></raitng>
+					<br>
+					Issue date: {{product.Issue_date | date: 'MMMM d, yyyy'}}
+					<br>
+					InStock: {{product.inStock}}
+				</p>
+			</div>
+		</li>
+	</ul>
+</div>
